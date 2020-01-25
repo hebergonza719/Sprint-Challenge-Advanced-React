@@ -1,17 +1,29 @@
 import { useState } from "react";
 
-export const useSearch = (initialValues) => {
+export const useSearch = (initialValues, players) => {
   const [values, setValues] = useState(initialValues);
 
+  // had to use let, why?
+  let [searchValue, setSearchValue] = useState([]);
+
   const handleChanges = e => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues(e.target.value);
   };
 
-  const clearForm = e => {
+  const handleSubmit = e => {
     e.preventDefault();
+    const queries = players.filter(player => {
+      return player.name.includes(values);
+    })
+    console.log("this is queries", queries);
+    
+    // didn't allow setSearchValue(queries), why didn't it make changes????
+    setSearchValue(searchValue = queries);
+    
+    console.log("this is searchValue", searchValue);
+    
     setValues(initialValues);
-  };
+  }
 
-
-  return [values, clearForm, handleChanges]
+  return [values, handleChanges, handleSubmit, searchValue]
 };
