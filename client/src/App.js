@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return(
       <section className="App">
-        <h1>Women's World Cup Players<br/>Ranked By Search Interest</h1>
+        <h1 data-testid="heading">Women's World Cup Players<br/>Ranked By Search Interest</h1>
         <SearchPlayer players={this.state.players}/>
       </section>
     )
